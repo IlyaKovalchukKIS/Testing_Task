@@ -1,7 +1,11 @@
+import os
 from datetime import datetime
 
 import bson
 from pymongo import MongoClient, errors
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def create_db(
@@ -16,12 +20,13 @@ def create_db(
     with open(filename_collection, "rb") as f:
         data = bson.decode_all(f.read())
 
+    collection.drop()
     collection.insert_many(data)
 
 
 def func_sale(dt_from: str, dt_upto: str, group_type: str):
     connect = MongoClient("mongodb://localhost:27017")
-    collection = connect["test_2"]["col_2"]
+    collection = connect[os.getenv("NAME_DB")][os.getenv("COLLECTION_DB")]
 
     start_datetime = datetime.strptime(dt_from, "%Y-%m-%dT%H:%M:%S")
     end_datetime = datetime.strptime(dt_upto, "%Y-%m-%dT%H:%M:%S")

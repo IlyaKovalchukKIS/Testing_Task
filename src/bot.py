@@ -17,7 +17,6 @@ async def hello_message(message: Message):
 @router.message()
 async def pipeline(message: Message):
     data = json.loads(message.text)
-    print(data)
     result = func_sale(
         dt_from=data["dt_from"], dt_upto=data["dt_upto"], group_type=data["group_type"]
     )
