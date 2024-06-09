@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "testing-task"
+version = "0.1.0"
+description = ""
+authors = ["User <mrlivedance@vk.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pymongo = "^4.7.3"
+aiogram = "^3.7.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
